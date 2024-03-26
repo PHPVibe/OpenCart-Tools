@@ -44,7 +44,17 @@ Array
 
 You should edit it as you need.
 
-For me 5 is the geozone is for 35 euro shipping geo zone, and so on.
+For me, 5 is the geo zone called 35 euro shipping geo zone, and so on.
+
+PS: 
+
+You can always do something like this :
+INSERT INTO  oc_zone_to_geo_zone (country_id, zone_id, geo_zone_id, date_added, date_modified)
+SELECT country_id , 0, X5, now(), now()
+FROM oc_country
+WHERE country_id not in  (select country_id from oc_zone_to_geo_zone)
+
+to put all the remaining countries in a geo zone (change X5 to your geo zone id)
 */
 
 
