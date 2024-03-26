@@ -1,6 +1,46 @@
 <?php
 /* 
-This file is intended to populate GEO Zones (for Shipping) from categories,when you have a hierarchy of countries as child categories and continents as main categories.
+This file is intended to populate GEO Zones (for Shipping) from categories when you have a hierarchy of countries as child categories and continents as main categories.
+
+Output and logic:
+###########
+Array
+(
+    [name] => Central African Republic
+    [category_id] => 61
+    [parent_id] => 59
+    [geo] => 4
+    [cid] => 41
+    [original] => Central African Republic
+)
+Array
+(
+    [name] => Egypt
+    [category_id] => 62
+    [parent_id] => 59
+    [geo] => 4
+    [cid] => 63
+    [original] => Egypt
+)
+Array
+(
+    [name] => Ethiopia
+    [category_id] => 64
+    [parent_id] => 59
+    [geo] => 4
+    [cid] => 68
+    [original] => Ethiopia
+)
+Array
+(
+    [name] => Morocco
+    [category_id] => 66
+    [parent_id] => 59
+    [geo] => 4
+    [cid] => 144
+    [original] => Morocco
+)
+###########
 
 You should edit it as you need.
 
@@ -31,7 +71,7 @@ $registry->set('db', $db);
 
 function get_country($name){
 	global $db;
-	$cco = $db->query("SELECT country_id as cid, name as original FROM `oc_country` where UPPER(name) like '".strtoupper($name)."' or UPPER(name) like '%".strtoupper(str_replace(' ','%',$ro))."%' ");
+	$cco = $db->query("SELECT country_id as cid, name as original FROM `oc_country` where UPPER(name) like '".strtoupper($name)."' or UPPER(name) like '%".strtoupper(str_replace(' ','%',$name))."%' ");
 	return $cco->row;
 	
 
